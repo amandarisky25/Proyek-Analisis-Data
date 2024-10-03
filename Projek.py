@@ -14,10 +14,10 @@ st.text('Halo, selamat datang di dashboard E-Commerce Analysis :)')
 
 
  # Load datasets
-sellers_df = pd.read_csv("C:/Users/ASUS/Documents/Bangkit/Learning Python/Projek_Analisis_Data/seller_olah.csv")
-customers_df = pd.read_csv("C:/Users/ASUS/Documents/Bangkit/Learning Python/Projek_Analisis_Data/customer_olah.csv")
-order_items_df = pd.read_csv("C:/Users/ASUS/Documents/Bangkit/Learning Python/Projek_Analisis_Data/order_items_olah.csv")
-orders_df = pd.read_csv("C:/Users/ASUS/Documents/Bangkit/Learning Python/Projek_Analisis_Data/order_olah.csv")
+sellers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/seller_olah.csv")
+customers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/customer_olah.csv")
+order_items_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/order_items_olah.csv")
+orders_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/order_olah.csv")
 
 
 # Membuat Tabs untuk menampilkan analisis
