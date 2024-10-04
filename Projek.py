@@ -14,10 +14,10 @@ st.text('Halo, selamat datang di dashboard E-Commerce Analysis :)')
 
 
  # Load datasets
-sellers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/seller_olah.csv")
-customers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/customer_olah.csv")
-order_items_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/order_items_olah.csv")
-orders_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/main/order_olah.csv")
+sellers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/Dashboard/seller_olah.csv")
+customers_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/Dashboard/customer_olah.csv")
+order_items_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/Dashboard/order_items_olah.csv")
+orders_df = pd.read_csv("https://raw.githubusercontent.com/amandarisky25/Proyek-Analisis-Data/refs/heads/Dashboard/order_olah.csv")
 
 
 # Membuat Tabs untuk menampilkan analisis
@@ -83,7 +83,7 @@ with tab2:
     top_10_customers_city_counts = customers_df.groupby(by="customer_city").customer_id.nunique().sort_values(ascending=False).head(10)
     
     # Visualisasi 10 Kota dengan Jumlah Seller Tertinggi
-    st.write("### 10 Kota dengan Jumlah Seller Tertinggi")
+    st.write("### 10 Kota dengan Jumlah CustomerTertinggi")
     st.bar_chart(top_10_customers_city_counts)
 
     # Mengelompokkan data customer per City dan mengurutkan
@@ -105,35 +105,36 @@ with tab2:
     # Menampilkan grafik di Streamlit
     st.pyplot(fig)
 
-    # Mengelompokkan data seller per state dan mengurutkan
-    seller_state_counts = sellers_df.groupby(by="seller_state").seller_id.nunique().sort_values(ascending=False).reset_index()
+    # Mengelompokkan data customer per state dan mengurutkan
+    customer_state_counts = customers_df.groupby(by="customer_state").customer_id.nunique().sort_values(ascending=False).reset_index()
 
     # Streamlit Header
-    st.header("Analisis Jumlah Seller Berdasarkan State")
+    st.header("Analisis Jumlah Customer Berdasarkan State")
 
     # Meminta input dari pengguna untuk memilih rentang data yang ingin ditampilkan
     start_index, end_index = st.slider(
         'Pilih Rentang Indeks State untuk Ditampilkan:',
         min_value=1,
-        max_value=len(seller_state_counts),
+        max_value=len(customer_state_counts),
         value=(1, 10),
         step=1
     )
 
     # Memilih data berdasarkan rentang input
-    selected_data = seller_state_counts.iloc[start_index-1:end_index]
+    selected_data = customer_state_counts.iloc[start_index-1:end_index]
 
     # Membuat visualisasi bar chart menggunakan Matplotlib dan Seaborn
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.barplot(x='seller_state', y='seller_id', data=selected_data, palette='viridis', ax=ax)
-    ax.set_title(f'Jumlah Seller per State dari Peringkat {start_index} hingga {end_index}')
+    sns.barplot(x='customer_state', y='customer_id', data=selected_data, palette='viridis', ax=ax)
+    ax.set_title(f'Jumlah Customer per State dari Peringkat {start_index} hingga {end_index}')
     ax.set_xlabel('State')
-    ax.set_ylabel('Jumlah Seller')
-    plt.xticks(rotation=45)  # Memiringkan label di sumbu x agar tidak berhimpit
+    ax.set_ylabel('Jumlah Customer')
+    plt.xticks(rotation=45)
     plt.tight_layout()
 
     # Menampilkan grafik di Streamlit
     st.pyplot(fig)
+
 
 # Tab untuk Analisis Order
 with tab3:
